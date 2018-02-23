@@ -85,7 +85,11 @@ function onError(reason)  {
 }
 
 var timer = setInterval(BeaconDetection, 1000);
+var timer2 = setInterval(foo, 1000);
 
+function foo(){
+	onDiscoverDevice();
+}
 
 
 function BeaconDetection(){
