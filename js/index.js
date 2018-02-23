@@ -86,7 +86,7 @@ var timer = setInterval(BeaconDetection, 1000);
 
 
 function BeaconDetection(){
-	
+	refreshDeviceList();
 }
 
 function ShowBeacon1(){
