@@ -46,6 +46,7 @@ function refreshDeviceList(){
 	//deviceList =[];
 	document.getElementById("bleDeviceList").innerHTML = ''; // empties the list
 	if (cordova.platformId === 'android') { // Android filtering is broken
+	//Beacon1 D4:F7:2C:CD:54:BD
 		ble.scan([], 5, onDiscoverDevice, onError);
 	} else {
 		//alert("Disconnected");
@@ -72,46 +73,115 @@ function conn(){
 	//for debug:
 	document.getElementById("debugDiv").innerHTML += "<br>"+deviceTouchArr[0]+"<br>"+deviceTouchArr[1];
 	ble.connect(ConnDeviceId, onConnect, onConnError);
- }
- 
-function onConnect(){
-	document.getElementById("statusDiv").innerHTML = " Status: Connected";
-	document.getElementById("bleId").innerHTML = ConnDeviceId;
-	ble.startNotification(ConnDeviceId, blue.serviceUUID, blue.rxCharacteristic, onData, onError);
-	 // ble.startNotification(deviceId, bluefruit.serviceUUID, bluefruit.rxCharacteristic, app.onData, app.onError);
-}
+ }	
 
-function onConnError(){
-	alert("Problem connecting");
-	document.getElementById("statusDiv").innerHTML = " Status: Disonnected";
-}
-
- function onData(data){ // data received from Arduino
-	document.getElementById("receiveDiv").innerHTML =  "Received: " + bytesToString(data) + "<br/>";
-}
-
-function data(txt){
-	messageInput.value = txt;
-}	
-
-function sendData() { // send data to Arduino
-	 var data = stringToBytes(messageInput.value);
-	ble.writeWithoutResponse(ConnDeviceId, blue.serviceUUID, blue.txCharacteristic, data, onSend, onError);
-}
-	
-function onSend(){
-	document.getElementById("sendDiv").innerHTML = "Sent: " + messageInput.value + "<br/>";
-}
-
-function disconnect() {
-	ble.disconnect(deviceId, onDisconnect, onError);
-}
-
-function onDisconnect(){
-	document.getElementById("statusDiv").innerHTML = "Status: Disconnected";
-}
 function onError(reason)  {
 	alert("ERROR: " + reason); // real apps should use notification.alert
 }
 
+var timer = setInterval(BeaconDetection, 1000);
+
+
+
+function BeaconDetection(){
+	ble.scan(['D4:F7:2C:CD:54:BD'], 10, ShowBeacon1, onError);
+	ble.scan(['Beacon1'], 10, ShowBeacon2, onError);
+	ble.scan(['3A329FF70994ECDF'], 10, ShowBeacon3, onError);
+}
+
+function ShowBeacon1(){
+	var x = document.getElementById("A");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function ShowBeacon2(){
+	var x = document.getElementById("B");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function ShowBeacon3(){
+	var x = document.getElementById("C");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function ShowRoom101(){
 	
+	var x = document.getElementById("r101");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function ShowRoom102(){
+	
+	var x = document.getElementById("r102");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function ShowServerRoom(){
+	
+	var x = document.getElementById("ServerRoom");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function ShowPrinters(){
+	
+	var x = document.getElementById("Printers");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function ShowRoom103(){
+	
+	var x = document.getElementById("r103");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function ShowRoom104(){
+	
+	var x = document.getElementById("r104");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function ShowRoomWC(){
+	
+	var x = document.getElementById("WC");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}

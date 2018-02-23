@@ -1,6 +1,108 @@
 body{
-	background-color: green;
-}	
+	background-image: url("Floorplan.png");
+	background-repeat: no-repeat;
+	background-color: #cccccc;
+	background-size: 100vw 100vh;
+}
+
+.Beacon {
+	border-radius: 50%;
+	position: fixed;
+    width: 15%;
+    height: 15%;
+    background: red;
+    border: 3px solid red;
+	opacity: 0.5;
+}
+
+.Room {
+	position: fixed;
+	background: yellow;
+	border: 3px solid orange;
+	opacity: 0.7;
+	z-index: -1;
+	
+}
+
+#A {
+	left: 61%;
+	top: 20%;
+}
+
+#B {
+	left: 61%;
+	top: 55%;
+}
+
+#C {
+	left:20%;
+	top:72%;
+}
+
+#r101 {
+	left: 46%;
+	top: 2%;
+	width: 28%;
+	height: 12%;
+}
+
+#r102 {
+	left: 46%;
+	top: 28%;
+	width: 17%;
+	height: 25%;
+}
+
+#ServerRoom {
+	left:46%;
+	top:53%;
+	width:17%;
+	height:7%;
+}
+
+#Printers {
+	left: 85%;
+	top: 60%;
+	width: 11%;
+	height: 9%;
+}
+
+#r103 {
+	left: 73%;
+	top: 70%;
+	width: 23%;
+	height: 15%;
+}
+
+#r104 {
+	left: 46%;
+	top: 70%;
+	width: 27%;
+	height: 15%;
+}
+
+#WC {
+	left: 21%;
+	top: 84%;
+	width: 25%;
+	height: 13%;
+}
+
+#buttonA {
+	position: fixed;
+	top: 85%;
+}
+
+#buttonB {
+	position: fixed;
+	top: 90%;
+}
+
+#buttonC {
+	position: fixed;
+	top: 95%;
+}
+
 img{
 	width: 100%;	
 }
@@ -18,23 +120,12 @@ img{
 #bleDeviceList{
 	
 }	
-#messageInput{
-	
-}
+
 #list{
 	background-color: red;
 }
 
 /* width will be 100% of content */
 #refreshButton{
-	width: 100%;
-}
-#sendButton{
-	width: 100%;
-}
-#ledOnButton{
-	width: 100%;
-}
-#ledOffButton{
 	width: 100%;
 }

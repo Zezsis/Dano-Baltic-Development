@@ -11,32 +11,35 @@
         <script type="text/javascript" src="js/index.js"></script>
         <title>Beacon</title>
     </head>
-     <body onload="onLoad()">
-
-		<h1>Bluifruit test</h1>
+    <body onload="onLoad()">
+<!--
+		<h1>Blufruit test</h1>
            
 		<ul id="bleDeviceList"> </ul>  
 		<button id="refreshButton" onClick = "refreshDeviceList()">Refresh</button>
 		<br>
 		<div id="statusDiv">Status: Disconnected</div>
 		<div id="bleId">DeviceId:</div>
-		<div id="debugDiv"></div>
-		<br><br>
-		<button id="ledOnButton" onclick = "data('1')">Set led ON</button>
-		<br><br>
-		<button id="ledOffButton" onclick = "data('0')">Set Led Off</button>
-		<br><br><br>
-		<input type="text" id="messageInput" value="Hello"/>
-		<br>
-		<button id="sendButton" onclick = "sendData()">Send</button>
-		<br>
-		
-		<br>
-		<div id="sendDiv"></div>
-		<br><br>
-		<button id="disconnectButton"onClick="disconnect()">Disconnect</button>
-		<div id="receiveDiv"></div>
+		<div id="debugDiv"></div> -->
+		<div class="Beacon" id="A"></div>
+		<div class="Beacon" id="B"></div>
+		<div class="Beacon" id="C"></div>
+		<div class="Room" id="r101" style="display: none"></div>
+		<div class="Room" id="r102" style="display: none"></div>
+		<div class="Room" id="ServerRoom" style="display: none"></div>
+		<div class="Room" id="Printers" style="display: none"></div>
+		<div class="Room" id="r103" style="display: none"></div>
+		<div class="Room" id="r104" style="display: none"></div>
+		<div class="Room" id="WC" style="display: none"></div>
+		<button id="buttonA" onClick = "ShowBeacon1()">A</button>
+		<button id="buttonB" onClick = "ShowBeacon2()">B</button>
+		<button id="buttonC" onClick = "ShowBeacon3()">C</button>
+		<button id="button101" onClick = "ShowRoom101()">101</button>
+		<button id="button102" onClick = "ShowRoom102()">102</button>
+		<button id="buttonServerRoom" onClick = "ShowServerRoom()">ServerRoom</button>
+		<button id="buttonPrinters" onClick = "ShowPrinters()">Printers</button>
+		<button id="button103" onClick = "ShowRoom103()">103</button>
+		<button id="button104" onClick = "ShowRoom104()">104</button>
+		<button id="buttonWC" onClick = "ShowRoomWC()">WC</button>
     </body>
 </html>
-			
-
