@@ -86,9 +86,7 @@ var timer = setInterval(BeaconDetection, 1000);
 
 
 function BeaconDetection(){
-	ble.scan(['D4:F7:2C:CD:54:BD'], 10, ShowBeacon1, onError);
-	ble.scan(['Beacon1'], 10, ShowBeacon2, onError);
-	ble.scan(['3A329FF70994ECDF'], 10, ShowBeacon3, onError);
+	
 }
 
 function ShowBeacon1(){
