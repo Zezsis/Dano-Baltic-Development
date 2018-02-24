@@ -23,81 +23,87 @@ function stringToBytes(string) {
 };*/
 
 //the bluefruit UART Service
-var blue ={
-	serviceUUID: '6e400001-b5a3-f393-e0a9-e50e24dcca9e',
+var blue = {
+    serviceUUID: '6e400001-b5a3-f393-e0a9-e50e24dcca9e',
     txCharacteristic: '6e400002-b5a3-f393-e0a9-e50e24dcca9e', // transmit is from the phone's perspective
     rxCharacteristic: '6e400003-b5a3-f393-e0a9-e50e24dcca9e'  // receive is from the phone's perspective
 }
 
 var ConnDeviceId;
-var deviceList =[];
- 
-function onLoad(){
-	document.addEventListener('deviceready', onDeviceReady, false);
-    bleDeviceList.addEventListener('touchstart', conn, false); // assume not scrolling
+var deviceList = [];
+
+function onLoad() {
+    hideBeacons();
+    document.addEventListener('deviceready', onDeviceReady, false);
+    //bleDeviceList.addEventListener('touchstart', conn, false); // assume not scrolling
 }
 
-function onDeviceReady(){
-	refreshDeviceList();
+function onDeviceReady() {
+    refreshDeviceList();
 }
 
-	 
-function refreshDeviceList(){
-	//deviceList =[];
-	document.getElementById("bleDeviceList").innerHTML = ''; // empties the list
-	if (cordova.platformId === 'android') { // Android filtering is broken
-	//Beacon1 D4:F7:2C:CD:54:BD
-		ble.scan([], 5, onDiscoverDevice, onError);
-	} else {
-		//alert("Disconnected");
-		ble.scan([blue.serviceUUID], 5, onDiscoverDevice, onError);
-	}
-}
+var beacons = {
+    "D4:F7:2C:CD:54:BD": 1,
+    "37:A4:93:A5:18:DF": 2,
+    "9C:8C:6E:4F:28:1F": 3
+};
 
+function refreshDeviceList() {
+    //document.getElementById("bleDeviceList").innerHTML = ''; // empties the list
+    if (cordova.platformId === 'android') { // Android filtering is broken
+        //Beacon1 D4:F7:2C:CD:54:BD
+        ble.scan([], 5, onDiscoverDevice, onError);
+    } else {
+        //alert("Disconnected");
+        ble.scan([blue.serviceUUID], 5, onDiscoverDevice, onError);
+    }
 
-function onDiscoverDevice(device){
-	//Make a list in html and show devises
-	if (device.id === 'D4:F7:2C:CD:54:BD'){
-		ShowBeacon1();
-		/*
-		var listItem = document.createElement('li'),
-		html = device.name+ "," + device.id;
-		listItem.innerHTML = html;
-		document.getElementById("bleDeviceList").appendChild(listItem);
-		*/
-	}
 }
 
 
-function conn(){
-	
-	var  deviceTouch= event.srcElement.innerHTML;
-	document.getElementById("debugDiv").innerHTML =""; // empty debugDiv
-	var deviceTouchArr = deviceTouch.split(",");
-	ConnDeviceId = deviceTouchArr[1];
-	//for debug:
-	document.getElementById("debugDiv").innerHTML += "<br>"+deviceTouchArr[0]+"<br>"+deviceTouchArr[1];
-	ble.connect(ConnDeviceId, onConnect, onConnError);
- }	
+function onDiscoverDevice(device) {
+    var beacon = beacons[device.id];
+    if (beacon) {
+        hideBeacons("Beacon" + beacon);
+        ShowBeacon(beacon);
+    }
+}
 
-function onError(reason)  {
-	alert("ERROR: " + reason); // real apps should use notification.alert
+
+function conn() {
+
+    var deviceTouch = event.srcElement.innerHTML;
+    document.getElementById("debugDiv").innerHTML = ""; // empty debugDiv
+    var deviceTouchArr = deviceTouch.split(",");
+    ConnDeviceId = deviceTouchArr[1];
+    //for debug:
+    document.getElementById("debugDiv").innerHTML += "<br>" + deviceTouchArr[0] + "<br>" + deviceTouchArr[1];
+    ble.connect(ConnDeviceId, onConnect, onConnError);
+}
+
+function onError(reason) {
+    alert("ERROR: " + reason); // real apps should use notification.alert
 }
 
 var timer = setInterval(BeaconDetection, 1000);
 var timer2 = setInterval(foo, 1000);
 
-function foo(){
-	onLoad();
+function foo() {
+    onLoad();
 }
 
 
-function BeaconDetection(){
-	refreshDeviceList();
+function BeaconDetection() {
+    refreshDeviceList();
 }
 
-function ShowBeacon1(){
-	var x = document.getElementById("A");
+function ShowBeacon(beacon) {
+    var x = document.getElementById("Beacon" + beacon);
+    x.style.display = "block";
+}
+
+function toggleDiv(room) {
+    var x = document.getElementById(room);
     if (x.style.display === "none") {
         x.style.display = "block";
     } else {
@@ -105,90 +111,10 @@ function ShowBeacon1(){
     }
 }
 
-function ShowBeacon2(){
-	var x = document.getElementById("B");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-
-function ShowBeacon3(){
-	var x = document.getElementById("C");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-
-function ShowRoom101(){
-	
-	var x = document.getElementById("r101");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-
-function ShowRoom102(){
-	
-	var x = document.getElementById("r102");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-
-function ShowServerRoom(){
-	
-	var x = document.getElementById("ServerRoom");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-
-function ShowPrinters(){
-	
-	var x = document.getElementById("Printers");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-
-function ShowRoom103(){
-	
-	var x = document.getElementById("r103");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-
-function ShowRoom104(){
-	
-	var x = document.getElementById("r104");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-
-function ShowRoomWC(){
-	
-	var x = document.getElementById("WC");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
+function hideBeacons(beacon) {
+    var beacons = document.getElementsByClassName("Beacon");
+    for (var i = 0; i < beacons.length; i++) {
+        if (beacon != beacons[i].id)
+        beacons[i].style.display = "none";
     }
 }
