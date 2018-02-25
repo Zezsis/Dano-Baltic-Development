@@ -69,18 +69,6 @@ function onDiscoverDevice(device) {
     }
 }
 
-
-function conn() {
-
-    var deviceTouch = event.srcElement.innerHTML;
-    document.getElementById("debugDiv").innerHTML = ""; // empty debugDiv
-    var deviceTouchArr = deviceTouch.split(",");
-    ConnDeviceId = deviceTouchArr[1];
-    //for debug:
-    document.getElementById("debugDiv").innerHTML += "<br>" + deviceTouchArr[0] + "<br>" + deviceTouchArr[1];
-    ble.connect(ConnDeviceId, onConnect, onConnError);
-}
-
 function onError(reason) {
     alert("ERROR: " + reason); // real apps should use notification.alert
 }
