@@ -17,7 +17,6 @@ function onLoad() {
 }
 
 function onDeviceReady() {
-	ShowBeacon(beacon);
     refreshDeviceList();
 }
 
@@ -28,6 +27,8 @@ var beacons = {
 };
 
 function refreshDeviceList() {
+	var beacon = beacons[device.id];
+	hideBeacons("Beacon" + beacon);
     //document.getElementById("bleDeviceList").innerHTML = ''; // empties the list
     if (cordova.platformId === 'android') { // Android filtering is broken
         //Beacon1 D4:F7:2C:CD:54:BD
@@ -43,8 +44,8 @@ function refreshDeviceList() {
 function onDiscoverDevice(device) {
     var beacon = beacons[device.id];
     if (beacon) {
-        hideBeacons("Beacon" + beacon);
-        //ShowBeacon(beacon);
+        //hideBeacons("Beacon" + beacon);
+        ShowBeacon(beacon);
     }
 }
 
