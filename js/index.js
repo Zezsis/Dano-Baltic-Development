@@ -17,6 +17,7 @@ function onLoad() {
 }
 
 function onDeviceReady() {
+	ShowBeacon(beacon);
     refreshDeviceList();
 }
 
@@ -43,7 +44,7 @@ function onDiscoverDevice(device) {
     var beacon = beacons[device.id];
     if (beacon) {
         hideBeacons("Beacon" + beacon);
-        ShowBeacon(beacon);
+        //ShowBeacon(beacon);
     }
 }
 
