@@ -22,8 +22,8 @@ function onDeviceReady() {
 
 var beacons = {
     "D4:F7:2C:CD:54:BD": 1,
-    "37:A4:93:A5:18:DF": 2,
-    "9C:8C:6E:4F:28:1F": 3
+    "FD:80:46:B7:ED:2C": 2,
+    "D4:79:09:AC:61:BF": 3
 };
 
 function refreshDeviceList() {
